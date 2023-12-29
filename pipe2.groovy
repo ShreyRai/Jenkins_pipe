@@ -21,7 +21,7 @@ pipeline{
 					echo "The username is ${username}"
 					echo "The machine name is ${machine}"
 				'''
-				echo "This is the build number: ${BUILD_ID}
+				echo "This is the build number: ${BUILD_ID}"
 			}
 		}
 		stage ('User Value'){
