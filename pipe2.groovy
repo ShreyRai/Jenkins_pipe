@@ -1,19 +1,16 @@
 pipeline{
 	agent any
-
-	environment {
+	environment{
 		username = 'ShreyRai20'
 		machine = 'Ubuntu'
 	}
-	
-	parameters {
+	parameters{
 		string (name: 'Card', defaultValue: 'Visa', description: 'Enter the card name')
 		booleanParam (name: 'Minor', defaultValue: false, description:'Are you minor, if yes uncheck the box')
 		choice (name: 'Bank', choices: ['SBI', 'HDFC', 'ICICI', 'PNB'], description: 'Select the card name.')
 		
 	}
-	
-	stages {
+	stages{
 		stage ('Print'){
 			steps{
 				echo "The procedure will begin shortly"
@@ -24,7 +21,7 @@ pipeline{
 				echo "This is the build number: ${BUILD_ID}"
 			}
 		}
-		stage ('User Value'){
+		stage('User Value'){
 			steps{
 				sh '''
 					echo "The card is: ${Card}"
@@ -33,21 +30,24 @@ pipeline{
 				'''
 			}
 		}
-		stage ('Permit') {
+		stage('Permit') {
 			input {
 				message "The details are saved, want to display them?"
 				ok "Yes, show"
 			}
+			steps{
+				echo "Going on next stage"
+			}
 		}
 		
-		stage ('Show'){
+		stage('Show'){
 			steps {
 				sh '''
 					echo "${Card} | ${Minor} | ${Bank}"
 				'''
 			}
 		}
-		post {
+		post{
 			always{
 				echo "The build is complete"
 			}
