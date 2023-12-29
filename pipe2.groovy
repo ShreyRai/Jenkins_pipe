@@ -47,7 +47,8 @@ pipeline{
 				'''
 			}
 		}
-		post{
+	}
+	post{
 			always{
 				echo "The build is complete"
 			}
@@ -67,5 +68,4 @@ pipeline{
 				echo "The build is fixed"
 			}
 		}
-	}
 }
